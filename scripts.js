@@ -33,3 +33,21 @@ function operate(operator, x, y) {
       return divide(x, y);
   }
 }
+
+const display = document.querySelector('.display');
+
+function inputDisplay(number) {
+  if (display.textContent.length === 16) return;
+
+  if (display.textContent === '0')
+    display.textContent = number;
+  else
+    display.textContent += number;
+}
+
+const numberButtons = document.querySelectorAll('.numbers button');
+numberButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    inputDisplay(button.id);
+  });
+});
