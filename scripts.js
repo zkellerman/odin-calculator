@@ -59,7 +59,6 @@ function clear() {
   secondNumber = '';
   operator = '';
   startNewNumber = true;
-  display.textContent = '0';
 }
 
 const numberButtons = document.querySelectorAll('.numbers button');
@@ -72,15 +71,26 @@ numberButtons.forEach((button) => {
 const functionButtons = document.querySelectorAll('.functions button');
 functionButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    if (button.id === 'clear')
+    if (button.id === 'clear') {
       clear();
+      display.textContent = '0';
+    }
     else if (button.id === '=') {
+      if (firstNumber === '') return;
+      
       secondNumber = display.textContent;
       outputDisplay();
+      clear();
     }
     else {
+      if (firstNumber !== '') {
+        secondNumber = display.textContent;
+        outputDisplay();
+      }
+
       firstNumber = display.textContent;
       operator = button.id;
+
       startNewNumber = true;
     }
   });
