@@ -11,7 +11,7 @@ function multiply(x, y) {
 }
 
 function divide(x, y) {
-  return x / y;
+  return y === 0 ? 'cannot compute' : x / y;
 }
 
 let firstNumber = '';
@@ -51,7 +51,11 @@ function inputDisplay(number) {
 function outputDisplay() {
   let num1 = parseInt(firstNumber);
   let num2 = parseInt(secondNumber);
-  display.textContent = operate(operator, num1, num2);
+
+  if (isNaN(num1) || isNaN(num2))
+    display.textContent = 'cannot compute';
+  else
+    display.textContent = operate(operator, num1, num2);
 }
 
 function clear() {
