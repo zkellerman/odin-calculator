@@ -14,9 +14,10 @@ function divide(x, y) {
   return x / y;
 }
 
-let firstNumber = 0;
-let secondNumber = 0;
+let firstNumber = '';
+let secondNumber = '';
 let operator = '';
+let startNewNumber = true;
 
 function operate(operator, x, y) {
   switch (operator) {
@@ -39,15 +40,48 @@ const display = document.querySelector('.display');
 function inputDisplay(number) {
   if (display.textContent.length === 16) return;
 
-  if (display.textContent === '0')
-    display.textContent = number;
-  else
-    display.textContent += number;
+  if (startNewNumber) {
+    display.textContent = '';
+    startNewNumber = false;
+  }
+
+  display.textContent += number;
+}
+
+function outputDisplay() {
+  let num1 = parseInt(firstNumber);
+  let num2 = parseInt(secondNumber);
+  display.textContent = operate(operator, num1, num2);
+}
+
+function clear() {
+  firstNumber = '';
+  secondNumber = '';
+  operator = '';
+  startNewNumber = true;
+  display.textContent = '0';
 }
 
 const numberButtons = document.querySelectorAll('.numbers button');
 numberButtons.forEach((button) => {
   button.addEventListener('click', () => {
     inputDisplay(button.id);
+  });
+});
+
+const functionButtons = document.querySelectorAll('.functions button');
+functionButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    if (button.id === 'clear')
+      clear();
+    else if (button.id === '=') {
+      secondNumber = display.textContent;
+      outputDisplay();
+    }
+    else {
+      firstNumber = display.textContent;
+      operator = button.id;
+      startNewNumber = true;
+    }
   });
 });
