@@ -65,14 +65,14 @@ function clear() {
   startNewNumber = true;
 }
 
-const numberButtons = document.querySelectorAll('.numbers button');
+const numberButtons = document.querySelectorAll('.number');
 numberButtons.forEach((button) => {
   button.addEventListener('click', () => {
     inputDisplay(button.id);
   });
 });
 
-const functionButtons = document.querySelectorAll('.functions button');
+const functionButtons = document.querySelectorAll('.function');
 functionButtons.forEach((button) => {
   button.addEventListener('click', () => {
     if (button.id === 'clear') {

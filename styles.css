@@ -1,8 +1,55 @@
 body {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  align-items: center;
+  background-color: bisque;
+  display: flex;
+  flex-direction: column;
+  font-family: monospace;
+  height: 100vh;
+  justify-content: center;
   margin: 0;
 }
 
 button {
-  padding: 8px 16px;
+  background-color: darkgray;
+  border: 0;
+  border-radius: 5%;
+  font-size: 32px;
+  height: 78px;
+  margin: 1px;
+  padding: 1px 6px;
+  width: 98px;
+}
+
+.container {
+  background-color: black;
+  border: 10px solid #252525;
+  height: 533px;
+  width: 426px;
+}
+
+.display {
+  background-color: #acacac;
+  display: flex;
+  font-size: 60px;
+  justify-content: end;
+  margin: 5px;
+  padding: 25px 10px;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.number {
+  background-color: #00939b;
+}
+
+.function {
+  background-color: #e79b0d;
+}
+
+.zero {
+  width: 205px;
 }
