@@ -42,14 +42,14 @@ button {
   justify-content: space-around;
 }
 
-.number {
+.number, #decimal {
   background-color: #00939b;
 }
 
-.function {
+.function, .special {
   background-color: #e79b0d;
 }
 
-.zero {
+#zero {
   width: 205px;
 }

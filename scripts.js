@@ -38,7 +38,7 @@ function operate(operator, x, y) {
 const display = document.querySelector('.display');
 
 function inputDisplay(number) {
-  if (display.textContent.length === 16) return;
+  if (display.textContent.length === 11) return;
 
   if (startNewNumber) {
     display.textContent = '';
@@ -49,13 +49,15 @@ function inputDisplay(number) {
 }
 
 function outputDisplay() {
-  let num1 = parseInt(firstNumber);
-  let num2 = parseInt(secondNumber);
+  let num1 = parseFloat(firstNumber);
+  let num2 = parseFloat(secondNumber);
 
   if (isNaN(num1) || isNaN(num2))
     display.textContent = 'cannot compute';
   else
     display.textContent = operate(operator, num1, num2);
+
+  clear();
 }
 
 function clear() {
@@ -68,34 +70,60 @@ function clear() {
 const numberButtons = document.querySelectorAll('.number');
 numberButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    inputDisplay(button.id);
+    inputDisplay(button.value);
   });
 });
 
 const functionButtons = document.querySelectorAll('.function');
 functionButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    if (button.id === 'clear') {
-      clear();
-      display.textContent = '0';
-    }
-    else if (button.id === '=') {
-      if (firstNumber === '') return;
-      
+    if (firstNumber !== '') {
       secondNumber = display.textContent;
       outputDisplay();
-      clear();
     }
-    else {
-      if (firstNumber !== '') {
-        secondNumber = display.textContent;
-        outputDisplay();
-      }
 
-      firstNumber = display.textContent;
-      operator = button.id;
+    firstNumber = display.textContent;
+    operator = button.value;
 
-      startNewNumber = true;
-    }
+    startNewNumber = true;
   });
+});
+
+const clearButton = document.querySelector('#clear');
+clearButton.addEventListener('click', () => {
+  clear();
+  display.textContent = '0';
+});
+
+const signButton = document.querySelector('#sign');
+signButton.addEventListener('click', () => {
+  firstNumber = display.textContent;
+  operator = '*';
+  secondNumber = '-1';
+  outputDisplay();
+});
+
+const percentButton = document.querySelector('#percent');
+percentButton.addEventListener('click', () => {
+  firstNumber = display.textContent;
+  operator = '/';
+  secondNumber = '100';
+  outputDisplay();
+});
+
+const decimalButton = document.querySelector('#decimal');
+decimalButton.addEventListener('click', () => {
+  let decimalIndex = display.textContent.indexOf('.');
+  if (decimalIndex === -1) {
+    display.textContent += '.';
+    startNewNumber = false;
+  }
+});
+
+const equalsButton = document.querySelector('#equals');
+equalsButton.addEventListener('click', () => {
+  if (firstNumber === '') return;
+      
+  secondNumber = display.textContent;
+  outputDisplay();
 });
