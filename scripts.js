@@ -111,6 +111,17 @@ percentButton.addEventListener('click', () => {
   outputDisplay();
 });
 
+const deleteButton = document.querySelector('#delete');
+deleteButton.addEventListener('click', () => {
+  let displayText = display.textContent;
+  if (displayText.length === 1) {
+    display.textContent = '0';
+    startNewNumber = true;
+  }
+  else
+    display.textContent = displayText.substring(0, displayText.length - 1);
+});
+
 const decimalButton = document.querySelector('#decimal');
 decimalButton.addEventListener('click', () => {
   let decimalIndex = display.textContent.indexOf('.');
