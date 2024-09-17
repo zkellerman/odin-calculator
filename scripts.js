@@ -73,6 +73,17 @@ function clear() {
   startNewNumber = true;
 }
 
+const allButtons = document.querySelectorAll('button');
+allButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    allButtons.forEach(function(btn) {
+      btn.style.border = '0';
+    })
+
+    button.style.border = '2px solid white';
+  });
+});
+
 const numberButtons = document.querySelectorAll('.number');
 numberButtons.forEach((button) => {
   button.addEventListener('click', () => {
