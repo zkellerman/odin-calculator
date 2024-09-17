@@ -138,3 +138,53 @@ equalsButton.addEventListener('click', () => {
   secondNumber = display.textContent;
   outputDisplay();
 });
+
+document.addEventListener('keydown', (e) => {
+  e.preventDefault();
+
+  switch(e.code) {
+    case 'Numpad0':
+    case 'Numpad1':
+    case 'Numpad2':
+    case 'Numpad3':
+    case 'Numpad4':
+    case 'Numpad5':
+    case 'Numpad6':
+    case 'Numpad7':
+    case 'Numpad8':
+    case 'Numpad9':
+      document.querySelector(`button[value="${e.code.at(-1)}"]`).click();
+      break;
+
+    case 'NumpadDecimal':
+    case 'Period':
+      decimalButton.click();
+      break;
+
+    case 'Backspace':
+    case 'Delete':
+      deleteButton.click();
+      break;
+
+    case 'Enter':
+    case 'NumpadEnter':
+      equalsButton.click();
+      break;
+
+    case 'NumpadAdd':
+      document.querySelector('button[value="+"]').click();
+      break;
+
+    case 'NumpadSubtract':
+      document.querySelector('button[value="-"]').click();
+      break;
+
+    case 'NumpadMultiply':
+      document.querySelector('button[value="*"]').click();
+      break;
+
+    case 'NumpadDivide':
+      document.querySelector('button[value="/"]').click();
+      break;
+  };
+});
